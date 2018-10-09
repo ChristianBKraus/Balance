@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+  <edmx:DataServices m:DataServiceVersion="2.0">
+    <Schema Namespace="BalanceService" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+      <EntityContainer Name="EntityContainer" m:IsDefaultEntityContainer="true">
+        <EntitySet Name="Account" EntityType="BalanceService.Account"/>
+        <EntitySet Name="Transaction" EntityType="BalanceService.Transaction"/>
+        <EntitySet Name="Balance" EntityType="BalanceService.Balance"/>
+        <AssociationSet Name="Transaction_account" Association="BalanceService.Transaction_account">
+          <End Role="Transaction" EntitySet="Transaction"/>
+          <End Role="Account" EntitySet="Account"/>
+        </AssociationSet>
+      </EntityContainer>
+      <EntityType Name="Account">
+        <Key>
+          <PropertyRef Name="ID"/>
+        </Key>
+        <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="name" Type="Edm.String"/>
+      </EntityType>
+      <EntityType Name="Transaction">
+        <Key>
+          <PropertyRef Name="ID"/>
+        </Key>
+        <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+        <NavigationProperty Name="account" Relationship="BalanceService.Transaction_account" FromRole="Transaction" ToRole="Account"/>
+        <Property Name="amount" Type="Edm.Int32"/>
+        <Property Name="account_ID" Type="Edm.Int32"/>
+      </EntityType>
+      <EntityType Name="Balance">
+        <Key>
+          <PropertyRef Name="ID"/>
+        </Key>
+        <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="name" Type="Edm.String"/>
+        <Property Name="amount" Type="Edm.Int32"/>
+      </EntityType>
+      <Association Name="Transaction_account">
+        <End Role="Transaction" Type="BalanceService.Transaction" Multiplicity="*"/>
+        <End Role="Account" Type="BalanceService.Account" Multiplicity="0..1"/>
+        <ReferentialConstraint>
+          <Principal Role="Account">
+            <PropertyRef Name="ID"/>
+          </Principal>
+          <Dependent Role="Transaction">
+            <PropertyRef Name="account_ID"/>
+          </Dependent>
+        </ReferentialConstraint>
+      </Association>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>

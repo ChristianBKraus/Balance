@@ -1,0 +1,8 @@
+---
+applications:
+  - name: Balance-srv
+    memory: 512M
+    buildpack: sap_java_buildpack
+    path: target/Balance-srv-1.0-SNAPSHOT.war  
+    services:
+    - Balance

@@ -1,0 +1,4 @@
+entity JUPITERPA_BALANCE_ACCOUNT {
+  key ID : Integer;
+  NAME : String(5000);
+};

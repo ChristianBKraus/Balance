@@ -1,0 +1,242 @@
+{
+  "definitions": {
+    "BalanceService": {
+      "kind": "service",
+      "@source": "srv/my-service.cds"
+    },
+    "BalanceService.Account": {
+      "kind": "entity",
+      "source": "jupiterpa.balance.Account",
+      "elements": {
+        "ID": {
+          "value": {
+            "=": "Account.ID"
+          },
+          "key": true,
+          "type": "cds.Integer",
+          "@cds.persistence.name": "ID"
+        },
+        "name": {
+          "value": {
+            "=": "Account.name"
+          },
+          "type": "cds.String",
+          "@cds.persistence.name": "NAME"
+        }
+      },
+      "@cds.persistence.name": "BALANCESERVICE_ACCOUNT"
+    },
+    "BalanceService.Transaction": {
+      "kind": "entity",
+      "source": "jupiterpa.balance.Transaction",
+      "elements": {
+        "ID": {
+          "value": {
+            "=": "Transaction.ID"
+          },
+          "key": true,
+          "type": "cds.Integer",
+          "@cds.persistence.name": "ID"
+        },
+        "account": {
+          "value": {
+            "=": "Transaction.account"
+          },
+          "type": "cds.Association",
+          "target": "BalanceService.Account",
+          "foreignKeys": {
+            "ID": {
+              "path": "ID",
+              "generatedFieldName": "account_ID",
+              "@cds.persistence.name": "ID"
+            }
+          },
+          "redirected": true,
+          "@cds.persistence.name": "ACCOUNT"
+        },
+        "amount": {
+          "value": {
+            "=": "Transaction.amount"
+          },
+          "type": "cds.Integer",
+          "@cds.persistence.name": "AMOUNT"
+        },
+        "account_ID": {
+          "type": "cds.Integer",
+          "value": {
+            "=": "Transaction.account_ID"
+          },
+          "@odata.foreignKey4": "account",
+          "@cds.persistence.name": "ACCOUNT_ID"
+        }
+      },
+      "@cds.persistence.name": "BALANCESERVICE_TRANSACTION"
+    },
+    "BalanceService.Balance": {
+      "kind": "entity",
+      "source": "jupiterpa.balance.Balance",
+      "elements": {
+        "ID": {
+          "value": {
+            "=": "Balance.ID"
+          },
+          "key": true,
+          "type": "cds.Integer",
+          "@cds.persistence.name": "ID"
+        },
+        "name": {
+          "value": {
+            "=": "Balance.name"
+          },
+          "type": "cds.String",
+          "@cds.persistence.name": "NAME"
+        },
+        "amount": {
+          "value": {
+            "=": "Balance.amount"
+          },
+          "type": "cds.Integer",
+          "@cds.persistence.name": "AMOUNT"
+        }
+      },
+      "@cds.persistence.name": "BALANCESERVICE_BALANCE"
+    },
+    "jupiterpa.balance.Account": {
+      "kind": "entity",
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.Integer",
+          "@cds.persistence.name": "ID"
+        },
+        "name": {
+          "type": "cds.String",
+          "@cds.persistence.name": "NAME"
+        }
+      },
+      "@cds.persistence.name": "JUPITERPA_BALANCE_ACCOUNT"
+    },
+    "jupiterpa.balance.Transaction": {
+      "kind": "entity",
+      "elements": {
+        "ID": {
+          "key": true,
+          "type": "cds.Integer",
+          "@cds.persistence.name": "ID"
+        },
+        "account": {
+          "type": "cds.Association",
+          "target": "jupiterpa.balance.Account",
+          "foreignKeys": {
+            "ID": {
+              "path": "ID",
+              "generatedFieldName": "account_ID",
+              "@cds.persistence.name": "ID"
+            }
+          },
+          "@cds.persistence.name": "ACCOUNT"
+        },
+        "amount": {
+          "type": "cds.Integer",
+          "@cds.persistence.name": "AMOUNT"
+        },
+        "account_ID": {
+          "type": "cds.Integer",
+          "@odata.foreignKey4": "account",
+          "@cds.persistence.name": "ACCOUNT_ID"
+        }
+      },
+      "@cds.persistence.name": "JUPITERPA_BALANCE_TRANSACTION"
+    },
+    "jupiterpa.balance.Balance": {
+      "kind": "view",
+      "query": {
+        "op": "query",
+        "from": [
+          {
+            "path": "Transaction",
+            "absolute": "jupiterpa.balance.Transaction"
+          }
+        ],
+        "elements": {
+          "ID": {
+            "value": {
+              "=": "account.ID"
+            },
+            "key": true,
+            "type": "cds.Integer",
+            "@cds.persistence.name": "ID"
+          },
+          "name": {
+            "value": {
+              "=": "account.name"
+            },
+            "type": "cds.String",
+            "@cds.persistence.name": "NAME"
+          },
+          "amount": {
+            "value": {
+              "op": "call",
+              "args": [
+                {
+                  "=": "amount"
+                }
+              ],
+              "func": "sum"
+            },
+            "type": "cds.Integer",
+            "_typeIsExplicit": true,
+            "@cds.persistence.name": "AMOUNT"
+          }
+        },
+        "groupBy": [
+          {
+            "=": "account.ID"
+          },
+          {
+            "=": "account.name"
+          }
+        ],
+        "kind": "query"
+      },
+      "source": "jupiterpa.balance.Transaction",
+      "elements": {
+        "ID": {
+          "value": {
+            "=": "account.ID"
+          },
+          "key": true,
+          "type": "cds.Integer",
+          "@cds.persistence.name": "ID"
+        },
+        "name": {
+          "value": {
+            "=": "account.name"
+          },
+          "type": "cds.String",
+          "@cds.persistence.name": "NAME"
+        },
+        "amount": {
+          "value": {
+            "op": "call",
+            "args": [
+              {
+                "=": "amount"
+              }
+            ],
+            "func": "sum"
+          },
+          "type": "cds.Integer",
+          "_typeIsExplicit": true,
+          "@cds.persistence.name": "AMOUNT"
+        }
+      },
+      "@cds.persistence.name": "JUPITERPA_BALANCE_BALANCE"
+    }
+  },
+  "version": {
+    "creator": "CDS Compiler v1.1.2",
+    "csn": "0.1.0"
+  },
+  "@sql_mapping": "plain"
+}
