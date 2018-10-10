@@ -14,18 +14,18 @@ import jupiterpa.util.cds.CDSQueryExecution;
 
 public class IntegrationTest {
 	
-    @Test
-    public void cds() throws SQLException {
-    	try {
-    		CDSQueryExecution exe = new CDSQueryExecution();
-			CDSQuery cdsQuery = 
-					new CDSSelectQueryBuilder("BalanceService.Account")
-					    .where(new ConditionBuilder().columnName("Name").EQ("Exists"))
-						.build();                                       
-			List<EntityData> list = 
-					exe.execute(cdsQuery);
-		} catch (CDSException e) {
-			e.printStackTrace();
-		}
-    }
+  //  @Test
+  //  public void cds() throws SQLException {
+  //  	try {
+  //  		CDSQueryExecution exe = new CDSQueryExecution();
+		// 	CDSQuery cdsQuery = 
+		// 			new CDSSelectQueryBuilder("BalanceService.Account")
+		// 			    .where(new ConditionBuilder().columnName("Name").EQ("Exists"))
+		// 				.build();                                       
+		// 	List<EntityData> list = 
+		// 			exe.execute(cdsQuery);
+		// } catch (CDSException e) {
+		// 	e.printStackTrace();
+		// }
+  //  }
  }
