@@ -15,25 +15,35 @@
         <Key>
           <PropertyRef Name="ID"/>
         </Key>
-        <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
         <Property Name="name" Type="Edm.String"/>
+        <Property Name="admin_CreatedAt" Type="Edm.DateTimeOffset"/>
+        <Property Name="admin_CreatedBy" Type="Edm.String" MaxLength="128"/>
+        <Property Name="admin_ChangedAt" Type="Edm.DateTimeOffset"/>
+        <Property Name="admin_ChangedBy" Type="Edm.String" MaxLength="128"/>
       </EntityType>
       <EntityType Name="Transaction">
         <Key>
           <PropertyRef Name="ID"/>
         </Key>
-        <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
         <NavigationProperty Name="account" Relationship="BalanceService.Transaction_account" FromRole="Transaction" ToRole="Account"/>
-        <Property Name="amount" Type="Edm.Int32"/>
-        <Property Name="account_ID" Type="Edm.Int32"/>
+        <Property Name="amount_value" Type="Edm.Int32"/>
+        <Property Name="amount_unit" Type="Edm.String" MaxLength="10"/>
+        <Property Name="admin_CreatedAt" Type="Edm.DateTimeOffset"/>
+        <Property Name="admin_CreatedBy" Type="Edm.String" MaxLength="128"/>
+        <Property Name="admin_ChangedAt" Type="Edm.DateTimeOffset"/>
+        <Property Name="admin_ChangedBy" Type="Edm.String" MaxLength="128"/>
+        <Property Name="account_ID" Type="Edm.Guid"/>
       </EntityType>
       <EntityType Name="Balance">
         <Key>
           <PropertyRef Name="ID"/>
         </Key>
-        <Property Name="ID" Type="Edm.Int32" Nullable="false"/>
+        <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
         <Property Name="name" Type="Edm.String"/>
         <Property Name="amount" Type="Edm.Int32"/>
+        <Property Name="unit" Type="Edm.Int32"/>
       </EntityType>
       <Association Name="Transaction_account">
         <End Role="Transaction" Type="BalanceService.Transaction" Multiplicity="*"/>

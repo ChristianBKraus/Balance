@@ -41,13 +41,6 @@ public class Transaction {
 
   public Transaction() {
   }
-  
-  public Transaction(Integer id, Account account, Integer amount) {
-	  this.ID = 0;
-	  this.account = account;
-	  this.account_ID = account.getID();
-	  this.amount = amount;
-  }
 
   public Integer getID() {
     return this.ID;

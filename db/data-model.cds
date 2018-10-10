@@ -1,14 +1,20 @@
 namespace jupiterpa.balance;
+using jupiterpa as base from './base-model';
 
 entity Account {
-  key ID : Integer;
+  key ID : UUID;
   name : String;
+  admin : base.AdminData;
 }
 
 entity Transaction {
-	key ID:  Integer;
+	key ID:  UUID;
 	account : association to Account; 
-	amount: Integer;
+	amount: base.Amount;
+	admin: base.AdminData;
 }
 
-entity Balance as SELECT from Transaction { key account.ID, account.name, sum( amount ) as amount : Integer } group by account.ID, account.name; 
+entity Balance as 
+	SELECT from Transaction 
+		{ key account.ID, account.name, sum( amount.value ) as amount : Integer, amount.unit as unit : Integer } 
+		group by account.ID, account.name, amount.unit; 

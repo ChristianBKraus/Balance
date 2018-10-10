@@ -21,7 +21,10 @@ public class ValidationTest {
 		repo = mock(RepositoryInterface.class);
 
 		when(repo.getAccountByName("NotExists")).thenReturn(null);
-		when(repo.getAccountByName("Exists")).thenReturn(new Account(1,"Exists"));
+		Account acc = new Account();
+		acc.setName("Exists");
+		acc.setId(1);
+		when(repo.getAccountByName("Exists")).thenReturn(acc);
 		
 		when(repo.getAccountById(0)).thenReturn(null);
 		when(repo.getAccountById(1)).thenReturn(new Account(1,"Exists"));

@@ -1,4 +1,8 @@
 entity JUPITERPA_BALANCE_ACCOUNT {
-  key ID : Integer;
+  key ID : String(36);
   NAME : String(5000);
+  ADMIN_CREATEDAT : UTCTimestamp;
+  ADMIN_CREATEDBY : String(128);
+  ADMIN_CHANGEDAT : UTCTimestamp;
+  ADMIN_CHANGEDBY : String(128);
 };

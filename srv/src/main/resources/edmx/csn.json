@@ -9,19 +9,77 @@
       "source": "jupiterpa.balance.Account",
       "elements": {
         "ID": {
+          "origin": "jupiterpa.balance.Account..ID",
+          "indexNo": 1,
           "value": {
             "=": "Account.ID"
           },
           "key": true,
-          "type": "cds.Integer",
+          "type": "cds.UUID",
           "@cds.persistence.name": "ID"
         },
         "name": {
+          "origin": "jupiterpa.balance.Account..name",
+          "indexNo": 2,
           "value": {
             "=": "Account.name"
           },
           "type": "cds.String",
           "@cds.persistence.name": "NAME"
+        },
+        "admin_CreatedAt": {
+          "indexNo": 1,
+          "type": "cds.Timestamp",
+          "@odata.on.insert": {
+            "#": "now"
+          },
+          "viaTransform": true,
+          "value": {
+            "=": "Account.admin_CreatedAt"
+          },
+          "origin": "jupiterpa.balance.Account..admin_CreatedAt",
+          "@cds.persistence.name": "ADMIN_CREATEDAT"
+        },
+        "admin_CreatedBy": {
+          "indexNo": 2,
+          "type": "cds.String",
+          "@odata.on.insert": {
+            "#": "user"
+          },
+          "length": 128,
+          "viaTransform": true,
+          "value": {
+            "=": "Account.admin_CreatedBy"
+          },
+          "origin": "jupiterpa.balance.Account..admin_CreatedBy",
+          "@cds.persistence.name": "ADMIN_CREATEDBY"
+        },
+        "admin_ChangedAt": {
+          "indexNo": 3,
+          "type": "cds.Timestamp",
+          "@odata.on.update": {
+            "#": "now"
+          },
+          "viaTransform": true,
+          "value": {
+            "=": "Account.admin_ChangedAt"
+          },
+          "origin": "jupiterpa.balance.Account..admin_ChangedAt",
+          "@cds.persistence.name": "ADMIN_CHANGEDAT"
+        },
+        "admin_ChangedBy": {
+          "indexNo": 4,
+          "type": "cds.String",
+          "@odata.on.update": {
+            "#": "user"
+          },
+          "length": 128,
+          "viaTransform": true,
+          "value": {
+            "=": "Account.admin_ChangedBy"
+          },
+          "origin": "jupiterpa.balance.Account..admin_ChangedBy",
+          "@cds.persistence.name": "ADMIN_CHANGEDBY"
         }
       },
       "@cds.persistence.name": "BALANCESERVICE_ACCOUNT"
@@ -31,14 +89,18 @@
       "source": "jupiterpa.balance.Transaction",
       "elements": {
         "ID": {
+          "origin": "jupiterpa.balance.Transaction..ID",
+          "indexNo": 1,
           "value": {
             "=": "Transaction.ID"
           },
           "key": true,
-          "type": "cds.Integer",
+          "type": "cds.UUID",
           "@cds.persistence.name": "ID"
         },
         "account": {
+          "origin": "jupiterpa.balance.Transaction..account",
+          "indexNo": 2,
           "value": {
             "=": "Transaction.account"
           },
@@ -46,6 +108,8 @@
           "target": "BalanceService.Account",
           "foreignKeys": {
             "ID": {
+              "origin": "jupiterpa.balance.Transaction..account.ID",
+              "indexNo": 1,
               "path": "ID",
               "generatedFieldName": "account_ID",
               "@cds.persistence.name": "ID"
@@ -54,18 +118,87 @@
           "redirected": true,
           "@cds.persistence.name": "ACCOUNT"
         },
-        "amount": {
-          "value": {
-            "=": "Transaction.amount"
-          },
+        "amount_value": {
+          "indexNo": 1,
           "type": "cds.Integer",
-          "@cds.persistence.name": "AMOUNT"
+          "viaTransform": true,
+          "value": {
+            "=": "Transaction.amount_value"
+          },
+          "origin": "jupiterpa.balance.Transaction..amount_value",
+          "@cds.persistence.name": "AMOUNT_VALUE"
+        },
+        "amount_unit": {
+          "indexNo": 2,
+          "type": "cds.String",
+          "length": 10,
+          "viaTransform": true,
+          "value": {
+            "=": "Transaction.amount_unit"
+          },
+          "origin": "jupiterpa.balance.Transaction..amount_unit",
+          "@cds.persistence.name": "AMOUNT_UNIT"
+        },
+        "admin_CreatedAt": {
+          "indexNo": 1,
+          "type": "cds.Timestamp",
+          "@odata.on.insert": {
+            "#": "now"
+          },
+          "viaTransform": true,
+          "value": {
+            "=": "Transaction.admin_CreatedAt"
+          },
+          "origin": "jupiterpa.balance.Transaction..admin_CreatedAt",
+          "@cds.persistence.name": "ADMIN_CREATEDAT"
+        },
+        "admin_CreatedBy": {
+          "indexNo": 2,
+          "type": "cds.String",
+          "@odata.on.insert": {
+            "#": "user"
+          },
+          "length": 128,
+          "viaTransform": true,
+          "value": {
+            "=": "Transaction.admin_CreatedBy"
+          },
+          "origin": "jupiterpa.balance.Transaction..admin_CreatedBy",
+          "@cds.persistence.name": "ADMIN_CREATEDBY"
+        },
+        "admin_ChangedAt": {
+          "indexNo": 3,
+          "type": "cds.Timestamp",
+          "@odata.on.update": {
+            "#": "now"
+          },
+          "viaTransform": true,
+          "value": {
+            "=": "Transaction.admin_ChangedAt"
+          },
+          "origin": "jupiterpa.balance.Transaction..admin_ChangedAt",
+          "@cds.persistence.name": "ADMIN_CHANGEDAT"
+        },
+        "admin_ChangedBy": {
+          "indexNo": 4,
+          "type": "cds.String",
+          "@odata.on.update": {
+            "#": "user"
+          },
+          "length": 128,
+          "viaTransform": true,
+          "value": {
+            "=": "Transaction.admin_ChangedBy"
+          },
+          "origin": "jupiterpa.balance.Transaction..admin_ChangedBy",
+          "@cds.persistence.name": "ADMIN_CHANGEDBY"
         },
         "account_ID": {
-          "type": "cds.Integer",
+          "type": "cds.UUID",
           "value": {
             "=": "Transaction.account_ID"
           },
+          "origin": "jupiterpa.balance.Transaction..account_ID",
           "@odata.foreignKey4": "account",
           "@cds.persistence.name": "ACCOUNT_ID"
         }
@@ -77,14 +210,18 @@
       "source": "jupiterpa.balance.Balance",
       "elements": {
         "ID": {
+          "origin": "jupiterpa.balance.Balance..ID",
+          "indexNo": 1,
           "value": {
             "=": "Balance.ID"
           },
           "key": true,
-          "type": "cds.Integer",
+          "type": "cds.UUID",
           "@cds.persistence.name": "ID"
         },
         "name": {
+          "origin": "jupiterpa.balance.Balance..name",
+          "indexNo": 2,
           "value": {
             "=": "Balance.name"
           },
@@ -92,11 +229,22 @@
           "@cds.persistence.name": "NAME"
         },
         "amount": {
+          "origin": "jupiterpa.balance.Balance..amount",
+          "indexNo": 3,
           "value": {
             "=": "Balance.amount"
           },
           "type": "cds.Integer",
           "@cds.persistence.name": "AMOUNT"
+        },
+        "unit": {
+          "origin": "jupiterpa.balance.Balance..unit",
+          "indexNo": 4,
+          "value": {
+            "=": "Balance.unit"
+          },
+          "type": "cds.Integer",
+          "@cds.persistence.name": "UNIT"
         }
       },
       "@cds.persistence.name": "BALANCESERVICE_BALANCE"
@@ -106,12 +254,52 @@
       "elements": {
         "ID": {
           "key": true,
-          "type": "cds.Integer",
+          "indexNo": 1,
+          "type": "cds.UUID",
           "@cds.persistence.name": "ID"
         },
         "name": {
+          "indexNo": 2,
           "type": "cds.String",
           "@cds.persistence.name": "NAME"
+        },
+        "admin_CreatedAt": {
+          "indexNo": 1,
+          "type": "cds.Timestamp",
+          "@odata.on.insert": {
+            "#": "now"
+          },
+          "viaTransform": true,
+          "@cds.persistence.name": "ADMIN_CREATEDAT"
+        },
+        "admin_CreatedBy": {
+          "indexNo": 2,
+          "type": "cds.String",
+          "@odata.on.insert": {
+            "#": "user"
+          },
+          "length": 128,
+          "viaTransform": true,
+          "@cds.persistence.name": "ADMIN_CREATEDBY"
+        },
+        "admin_ChangedAt": {
+          "indexNo": 3,
+          "type": "cds.Timestamp",
+          "@odata.on.update": {
+            "#": "now"
+          },
+          "viaTransform": true,
+          "@cds.persistence.name": "ADMIN_CHANGEDAT"
+        },
+        "admin_ChangedBy": {
+          "indexNo": 4,
+          "type": "cds.String",
+          "@odata.on.update": {
+            "#": "user"
+          },
+          "length": 128,
+          "viaTransform": true,
+          "@cds.persistence.name": "ADMIN_CHANGEDBY"
         }
       },
       "@cds.persistence.name": "JUPITERPA_BALANCE_ACCOUNT"
@@ -121,27 +309,77 @@
       "elements": {
         "ID": {
           "key": true,
-          "type": "cds.Integer",
+          "indexNo": 1,
+          "type": "cds.UUID",
           "@cds.persistence.name": "ID"
         },
         "account": {
+          "indexNo": 2,
           "type": "cds.Association",
           "target": "jupiterpa.balance.Account",
           "foreignKeys": {
             "ID": {
               "path": "ID",
+              "indexNo": 1,
               "generatedFieldName": "account_ID",
               "@cds.persistence.name": "ID"
             }
           },
           "@cds.persistence.name": "ACCOUNT"
         },
-        "amount": {
+        "amount_value": {
+          "indexNo": 1,
           "type": "cds.Integer",
-          "@cds.persistence.name": "AMOUNT"
+          "viaTransform": true,
+          "@cds.persistence.name": "AMOUNT_VALUE"
+        },
+        "amount_unit": {
+          "indexNo": 2,
+          "type": "cds.String",
+          "length": 10,
+          "viaTransform": true,
+          "@cds.persistence.name": "AMOUNT_UNIT"
+        },
+        "admin_CreatedAt": {
+          "indexNo": 1,
+          "type": "cds.Timestamp",
+          "@odata.on.insert": {
+            "#": "now"
+          },
+          "viaTransform": true,
+          "@cds.persistence.name": "ADMIN_CREATEDAT"
+        },
+        "admin_CreatedBy": {
+          "indexNo": 2,
+          "type": "cds.String",
+          "@odata.on.insert": {
+            "#": "user"
+          },
+          "length": 128,
+          "viaTransform": true,
+          "@cds.persistence.name": "ADMIN_CREATEDBY"
+        },
+        "admin_ChangedAt": {
+          "indexNo": 3,
+          "type": "cds.Timestamp",
+          "@odata.on.update": {
+            "#": "now"
+          },
+          "viaTransform": true,
+          "@cds.persistence.name": "ADMIN_CHANGEDAT"
+        },
+        "admin_ChangedBy": {
+          "indexNo": 4,
+          "type": "cds.String",
+          "@odata.on.update": {
+            "#": "user"
+          },
+          "length": 128,
+          "viaTransform": true,
+          "@cds.persistence.name": "ADMIN_CHANGEDBY"
         },
         "account_ID": {
-          "type": "cds.Integer",
+          "type": "cds.UUID",
           "@odata.foreignKey4": "account",
           "@cds.persistence.name": "ACCOUNT_ID"
         }
@@ -164,13 +402,17 @@
               "=": "account.ID"
             },
             "key": true,
-            "type": "cds.Integer",
+            "indexNo": 1,
+            "origin": "jupiterpa.balance.Account..ID",
+            "type": "cds.UUID",
             "@cds.persistence.name": "ID"
           },
           "name": {
             "value": {
               "=": "account.name"
             },
+            "indexNo": 2,
+            "origin": "jupiterpa.balance.Account..name",
             "type": "cds.String",
             "@cds.persistence.name": "NAME"
           },
@@ -179,14 +421,24 @@
               "op": "call",
               "args": [
                 {
-                  "=": "amount"
+                  "=": "amount.value"
                 }
               ],
               "func": "sum"
             },
+            "indexNo": 3,
             "type": "cds.Integer",
             "_typeIsExplicit": true,
             "@cds.persistence.name": "AMOUNT"
+          },
+          "unit": {
+            "value": {
+              "=": "amount.unit"
+            },
+            "indexNo": 4,
+            "type": "cds.Integer",
+            "_typeIsExplicit": true,
+            "@cds.persistence.name": "UNIT"
           }
         },
         "groupBy": [
@@ -195,6 +447,9 @@
           },
           {
             "=": "account.name"
+          },
+          {
+            "=": "amount.unit"
           }
         ],
         "kind": "query"
@@ -206,13 +461,17 @@
             "=": "account.ID"
           },
           "key": true,
-          "type": "cds.Integer",
+          "indexNo": 1,
+          "origin": "jupiterpa.balance.Account..ID",
+          "type": "cds.UUID",
           "@cds.persistence.name": "ID"
         },
         "name": {
           "value": {
             "=": "account.name"
           },
+          "indexNo": 2,
+          "origin": "jupiterpa.balance.Account..name",
           "type": "cds.String",
           "@cds.persistence.name": "NAME"
         },
@@ -221,21 +480,94 @@
             "op": "call",
             "args": [
               {
-                "=": "amount"
+                "=": "amount.value"
               }
             ],
             "func": "sum"
           },
+          "indexNo": 3,
           "type": "cds.Integer",
           "_typeIsExplicit": true,
           "@cds.persistence.name": "AMOUNT"
+        },
+        "unit": {
+          "value": {
+            "=": "amount.unit"
+          },
+          "indexNo": 4,
+          "type": "cds.Integer",
+          "_typeIsExplicit": true,
+          "@cds.persistence.name": "UNIT"
         }
       },
       "@cds.persistence.name": "JUPITERPA_BALANCE_BALANCE"
+    },
+    "jupiterpa.Unit": {
+      "kind": "type",
+      "type": "cds.String",
+      "length": 10,
+      "@cds.persistence.name": "JUPITERPA_UNIT"
+    },
+    "jupiterpa.Amount": {
+      "kind": "type",
+      "elements": {
+        "value": {
+          "indexNo": 1,
+          "type": "cds.Integer",
+          "@cds.persistence.name": "VALUE"
+        },
+        "unit": {
+          "indexNo": 2,
+          "type": "cds.String",
+          "length": 10,
+          "@cds.persistence.name": "UNIT"
+        }
+      },
+      "@cds.persistence.name": "JUPITERPA_AMOUNT"
+    },
+    "jupiterpa.AdminData": {
+      "kind": "type",
+      "elements": {
+        "CreatedAt": {
+          "indexNo": 1,
+          "type": "cds.Timestamp",
+          "@odata.on.insert": {
+            "#": "now"
+          },
+          "@cds.persistence.name": "CREATEDAT"
+        },
+        "CreatedBy": {
+          "indexNo": 2,
+          "type": "cds.String",
+          "@odata.on.insert": {
+            "#": "user"
+          },
+          "length": 128,
+          "@cds.persistence.name": "CREATEDBY"
+        },
+        "ChangedAt": {
+          "indexNo": 3,
+          "type": "cds.Timestamp",
+          "@odata.on.update": {
+            "#": "now"
+          },
+          "@cds.persistence.name": "CHANGEDAT"
+        },
+        "ChangedBy": {
+          "indexNo": 4,
+          "type": "cds.String",
+          "@odata.on.update": {
+            "#": "user"
+          },
+          "length": 128,
+          "@cds.persistence.name": "CHANGEDBY"
+        }
+      },
+      "@cds.persistence.name": "JUPITERPA_ADMINDATA"
     }
   },
   "version": {
-    "creator": "CDS Compiler v1.1.2",
+    "creator": "CDS Compiler v1.1.3",
     "csn": "0.1.0"
   },
   "@sql_mapping": "plain"

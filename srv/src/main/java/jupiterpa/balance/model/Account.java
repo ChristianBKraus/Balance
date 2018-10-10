@@ -26,10 +26,6 @@ public class Account {
 
   public Account() {
   }
-  public Account(Integer id, String name) {
-	  this.ID = id;
-	  this.name = name;
-  }
 
   public Integer getID() {
     return this.ID;
