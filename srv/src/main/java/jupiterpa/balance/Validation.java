@@ -13,7 +13,7 @@ public class Validation {
 	}
 	
 	public void validate(Account account) throws ValidationException {
-		if (account.getName() == "") {
+		if (account.getName() == null || account.getName().isEmpty()) {
 			throw new ValidationException("ACCOUNT_INITIAL_NAME");
 		}
 		if ( repo.getAccountByName( account.getName() ) != null ) {
@@ -25,13 +25,15 @@ public class Validation {
 		if ( transaction.getAccount() == null ) {
 			throw new ValidationException("TRANSACTION_ACCOUNT_INITIAL");
 		}
-		 if ( repo.getAccountById(transaction.getAccount_ID()) == null ) {
+		Account acc = transaction.getAccount();  
+		
+		 if ( repo.getAccountById(transaction.getAccount().getID()) == null ) {
 		 	throw new ValidationException("TRANSACTION_ACCOUNT_NOT_EXISTS",transaction.getAccount_ID().toString());			
 		 }
 		 if (transaction.getAmount() < 0.0) {
-		 	Balance balance = repo.getBalanceByAccountId(transaction.getAccount_ID());
+		 	Balance balance = repo.getBalanceByAccountId(transaction.getAccount().getID());
 		 	if ( Math.abs( transaction.getAmount() ) > balance.getAmount() ) {
-		 		throw new ValidationException("TRANSACTION_BALANCE_LOW",transaction.getAccount_ID().toString(),balance.getAmount().toString());				
+		 		throw new ValidationException("TRANSACTION_BALANCE_LOW",transaction.getAccount().getID().toString(),balance.getAmount().toString());				
 		 	}
 		 }
 	}

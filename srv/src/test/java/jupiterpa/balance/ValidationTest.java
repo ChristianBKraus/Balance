@@ -16,20 +16,27 @@ public class ValidationTest {
 	
 	RepositoryInterface repo;
 	Validation validation;	
+	Account exists = new Account();
+	
 	@Before
 	public void setup() {
 		repo = mock(RepositoryInterface.class);
 
+		exists.setName("Exists");
+		exists.setID(1);
+
 		when(repo.getAccountByName("NotExists")).thenReturn(null);
-		Account acc = new Account();
-		acc.setName("Exists");
-		acc.setId(1);
-		when(repo.getAccountByName("Exists")).thenReturn(acc);
+		when(repo.getAccountByName("Exists")).thenReturn(exists);
 		
 		when(repo.getAccountById(0)).thenReturn(null);
-		when(repo.getAccountById(1)).thenReturn(new Account(1,"Exists"));
+		when(repo.getAccountById(1)).thenReturn(exists);
 		
-		when(repo.getBalanceByAccountId(1)).thenReturn(new Balance(1,"Exists",10));
+		Balance bal = new Balance();
+		bal.setId(1);
+		bal.setName("Exists");
+		bal.setAmount(10);
+		
+		when(repo.getBalanceByAccountId(1)).thenReturn(bal);
 		
         validation = new Validation(repo);		
 	}
@@ -37,23 +44,33 @@ public class ValidationTest {
 	// Account
 	@Test
 	public void accountSuccess() throws ValidationException {			
-		validation.validate(new Account(0,"NotExists"));
+		Account acc = new Account();
+		acc.setName("NotExists");
+
+		validation.validate(acc);
 	}
 	
 	@Test(expected = ValidationException.class)
 	public void accountInitialName() throws ValidationException {
-		validation.validate(new Account(0,""));
+		Account acc = new Account();
+		
+		validation.validate(acc);
 	}
 	
 	@Test(expected = ValidationException.class)
 	public void accountNameExists() throws ValidationException {
-		validation.validate(new Account(1,"Exists"));
+		validation.validate(exists);
 	}
 	
 	// Transaction
     @Test
     public void transactionSuccess() throws ValidationException {
-        validation.validate(new Transaction(10,new Account(1,"Exists"),5));
+    	Transaction t = new Transaction();
+    	t.setID(10);
+    	t.setAccount(exists);
+    	t.setAmount(5);
+    	
+        validation.validate(t);
     }
     
  }
