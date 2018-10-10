@@ -31,10 +31,13 @@ public class CDSQueryExecution {
 		Context ctx;
 		try {
 			ctx = new InitialContext();
+			logger.error("Context: ",ctx);
+			if (ctx == null) logger.error("Context initial");
 			conn = ((DataSource) ctx.lookup("java:comp/env/jdbc/java-hdi-container")).getConnection();	
-			logger.info("Connection to HANA successfull");
+			logger.error("Connection to HANA successfull",ctx,conn);
 		} catch (Exception e) {
 			e.printStackTrace();
+			logger.error("Exception");
 		}
 		return conn;
 	}
