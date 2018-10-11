@@ -2,8 +2,8 @@ db/src/gen/.hdinamespace
 db/src/gen/BALANCESERVICE_ACCOUNT.hdbcds
 db/src/gen/BALANCESERVICE_BALANCE.hdbcds
 db/src/gen/BALANCESERVICE_TRANSACTION.hdbcds
-db/src/gen/JUPITERPA_BALANCE_ACCOUNT.hdbcds
-db/src/gen/JUPITERPA_BALANCE_BALANCE.hdbcds
-db/src/gen/JUPITERPA_BALANCE_TRANSACTION.hdbcds
+db/src/gen/JUPITERPA_BALANCE_MODEL_ACCOUNT.hdbcds
+db/src/gen/JUPITERPA_BALANCE_MODEL_BALANCE.hdbcds
+db/src/gen/JUPITERPA_BALANCE_MODEL_TRANSACTION.hdbcds
 srv/src/main/resources/edmx/BalanceService.xml
 srv/src/main/resources/edmx/csn.json

@@ -6,10 +6,10 @@
     },
     "BalanceService.Account": {
       "kind": "entity",
-      "source": "jupiterpa.balance.Account",
+      "source": "jupiterpa.balance.model.Account",
       "elements": {
         "ID": {
-          "origin": "jupiterpa.balance.Account..ID",
+          "origin": "jupiterpa.balance.model.Account..ID",
           "indexNo": 1,
           "value": {
             "=": "Account.ID"
@@ -19,7 +19,7 @@
           "@cds.persistence.name": "ID"
         },
         "name": {
-          "origin": "jupiterpa.balance.Account..name",
+          "origin": "jupiterpa.balance.model.Account..name",
           "indexNo": 2,
           "value": {
             "=": "Account.name"
@@ -37,7 +37,7 @@
           "value": {
             "=": "Account.admin_CreatedAt"
           },
-          "origin": "jupiterpa.balance.Account..admin_CreatedAt",
+          "origin": "jupiterpa.balance.model.Account..admin_CreatedAt",
           "@cds.persistence.name": "ADMIN_CREATEDAT"
         },
         "admin_CreatedBy": {
@@ -51,7 +51,7 @@
           "value": {
             "=": "Account.admin_CreatedBy"
           },
-          "origin": "jupiterpa.balance.Account..admin_CreatedBy",
+          "origin": "jupiterpa.balance.model.Account..admin_CreatedBy",
           "@cds.persistence.name": "ADMIN_CREATEDBY"
         },
         "admin_ChangedAt": {
@@ -64,7 +64,7 @@
           "value": {
             "=": "Account.admin_ChangedAt"
           },
-          "origin": "jupiterpa.balance.Account..admin_ChangedAt",
+          "origin": "jupiterpa.balance.model.Account..admin_ChangedAt",
           "@cds.persistence.name": "ADMIN_CHANGEDAT"
         },
         "admin_ChangedBy": {
@@ -78,7 +78,7 @@
           "value": {
             "=": "Account.admin_ChangedBy"
           },
-          "origin": "jupiterpa.balance.Account..admin_ChangedBy",
+          "origin": "jupiterpa.balance.model.Account..admin_ChangedBy",
           "@cds.persistence.name": "ADMIN_CHANGEDBY"
         }
       },
@@ -86,10 +86,10 @@
     },
     "BalanceService.Transaction": {
       "kind": "entity",
-      "source": "jupiterpa.balance.Transaction",
+      "source": "jupiterpa.balance.model.Transaction",
       "elements": {
         "ID": {
-          "origin": "jupiterpa.balance.Transaction..ID",
+          "origin": "jupiterpa.balance.model.Transaction..ID",
           "indexNo": 1,
           "value": {
             "=": "Transaction.ID"
@@ -99,7 +99,7 @@
           "@cds.persistence.name": "ID"
         },
         "account": {
-          "origin": "jupiterpa.balance.Transaction..account",
+          "origin": "jupiterpa.balance.model.Transaction..account",
           "indexNo": 2,
           "value": {
             "=": "Transaction.account"
@@ -108,7 +108,7 @@
           "target": "BalanceService.Account",
           "foreignKeys": {
             "ID": {
-              "origin": "jupiterpa.balance.Transaction..account.ID",
+              "origin": "jupiterpa.balance.model.Transaction..account.ID",
               "indexNo": 1,
               "path": "ID",
               "generatedFieldName": "account_ID",
@@ -125,7 +125,7 @@
           "value": {
             "=": "Transaction.amount_value"
           },
-          "origin": "jupiterpa.balance.Transaction..amount_value",
+          "origin": "jupiterpa.balance.model.Transaction..amount_value",
           "@cds.persistence.name": "AMOUNT_VALUE"
         },
         "amount_unit": {
@@ -136,7 +136,7 @@
           "value": {
             "=": "Transaction.amount_unit"
           },
-          "origin": "jupiterpa.balance.Transaction..amount_unit",
+          "origin": "jupiterpa.balance.model.Transaction..amount_unit",
           "@cds.persistence.name": "AMOUNT_UNIT"
         },
         "admin_CreatedAt": {
@@ -149,7 +149,7 @@
           "value": {
             "=": "Transaction.admin_CreatedAt"
           },
-          "origin": "jupiterpa.balance.Transaction..admin_CreatedAt",
+          "origin": "jupiterpa.balance.model.Transaction..admin_CreatedAt",
           "@cds.persistence.name": "ADMIN_CREATEDAT"
         },
         "admin_CreatedBy": {
@@ -163,7 +163,7 @@
           "value": {
             "=": "Transaction.admin_CreatedBy"
           },
-          "origin": "jupiterpa.balance.Transaction..admin_CreatedBy",
+          "origin": "jupiterpa.balance.model.Transaction..admin_CreatedBy",
           "@cds.persistence.name": "ADMIN_CREATEDBY"
         },
         "admin_ChangedAt": {
@@ -176,7 +176,7 @@
           "value": {
             "=": "Transaction.admin_ChangedAt"
           },
-          "origin": "jupiterpa.balance.Transaction..admin_ChangedAt",
+          "origin": "jupiterpa.balance.model.Transaction..admin_ChangedAt",
           "@cds.persistence.name": "ADMIN_CHANGEDAT"
         },
         "admin_ChangedBy": {
@@ -190,7 +190,7 @@
           "value": {
             "=": "Transaction.admin_ChangedBy"
           },
-          "origin": "jupiterpa.balance.Transaction..admin_ChangedBy",
+          "origin": "jupiterpa.balance.model.Transaction..admin_ChangedBy",
           "@cds.persistence.name": "ADMIN_CHANGEDBY"
         },
         "account_ID": {
@@ -198,7 +198,7 @@
           "value": {
             "=": "Transaction.account_ID"
           },
-          "origin": "jupiterpa.balance.Transaction..account_ID",
+          "origin": "jupiterpa.balance.model.Transaction..account_ID",
           "@odata.foreignKey4": "account",
           "@cds.persistence.name": "ACCOUNT_ID"
         }
@@ -207,10 +207,10 @@
     },
     "BalanceService.Balance": {
       "kind": "entity",
-      "source": "jupiterpa.balance.Balance",
+      "source": "jupiterpa.balance.model.Balance",
       "elements": {
         "ID": {
-          "origin": "jupiterpa.balance.Balance..ID",
+          "origin": "jupiterpa.balance.model.Balance..ID",
           "indexNo": 1,
           "value": {
             "=": "Balance.ID"
@@ -220,7 +220,7 @@
           "@cds.persistence.name": "ID"
         },
         "name": {
-          "origin": "jupiterpa.balance.Balance..name",
+          "origin": "jupiterpa.balance.model.Balance..name",
           "indexNo": 2,
           "value": {
             "=": "Balance.name"
@@ -229,7 +229,7 @@
           "@cds.persistence.name": "NAME"
         },
         "amount": {
-          "origin": "jupiterpa.balance.Balance..amount",
+          "origin": "jupiterpa.balance.model.Balance..amount",
           "indexNo": 3,
           "value": {
             "=": "Balance.amount"
@@ -238,7 +238,7 @@
           "@cds.persistence.name": "AMOUNT"
         },
         "unit": {
-          "origin": "jupiterpa.balance.Balance..unit",
+          "origin": "jupiterpa.balance.model.Balance..unit",
           "indexNo": 4,
           "value": {
             "=": "Balance.unit"
@@ -249,7 +249,7 @@
       },
       "@cds.persistence.name": "BALANCESERVICE_BALANCE"
     },
-    "jupiterpa.balance.Account": {
+    "jupiterpa.balance.model.Account": {
       "kind": "entity",
       "elements": {
         "ID": {
@@ -302,9 +302,9 @@
           "@cds.persistence.name": "ADMIN_CHANGEDBY"
         }
       },
-      "@cds.persistence.name": "JUPITERPA_BALANCE_ACCOUNT"
+      "@cds.persistence.name": "JUPITERPA_BALANCE_MODEL_ACCOUNT"
     },
-    "jupiterpa.balance.Transaction": {
+    "jupiterpa.balance.model.Transaction": {
       "kind": "entity",
       "elements": {
         "ID": {
@@ -316,7 +316,7 @@
         "account": {
           "indexNo": 2,
           "type": "cds.Association",
-          "target": "jupiterpa.balance.Account",
+          "target": "jupiterpa.balance.model.Account",
           "foreignKeys": {
             "ID": {
               "path": "ID",
@@ -384,16 +384,16 @@
           "@cds.persistence.name": "ACCOUNT_ID"
         }
       },
-      "@cds.persistence.name": "JUPITERPA_BALANCE_TRANSACTION"
+      "@cds.persistence.name": "JUPITERPA_BALANCE_MODEL_TRANSACTION"
     },
-    "jupiterpa.balance.Balance": {
+    "jupiterpa.balance.model.Balance": {
       "kind": "view",
       "query": {
         "op": "query",
         "from": [
           {
             "path": "Transaction",
-            "absolute": "jupiterpa.balance.Transaction"
+            "absolute": "jupiterpa.balance.model.Transaction"
           }
         ],
         "elements": {
@@ -403,7 +403,7 @@
             },
             "key": true,
             "indexNo": 1,
-            "origin": "jupiterpa.balance.Account..ID",
+            "origin": "jupiterpa.balance.model.Account..ID",
             "type": "cds.UUID",
             "@cds.persistence.name": "ID"
           },
@@ -412,7 +412,7 @@
               "=": "account.name"
             },
             "indexNo": 2,
-            "origin": "jupiterpa.balance.Account..name",
+            "origin": "jupiterpa.balance.model.Account..name",
             "type": "cds.String",
             "@cds.persistence.name": "NAME"
           },
@@ -454,7 +454,7 @@
         ],
         "kind": "query"
       },
-      "source": "jupiterpa.balance.Transaction",
+      "source": "jupiterpa.balance.model.Transaction",
       "elements": {
         "ID": {
           "value": {
@@ -462,7 +462,7 @@
           },
           "key": true,
           "indexNo": 1,
-          "origin": "jupiterpa.balance.Account..ID",
+          "origin": "jupiterpa.balance.model.Account..ID",
           "type": "cds.UUID",
           "@cds.persistence.name": "ID"
         },
@@ -471,7 +471,7 @@
             "=": "account.name"
           },
           "indexNo": 2,
-          "origin": "jupiterpa.balance.Account..name",
+          "origin": "jupiterpa.balance.model.Account..name",
           "type": "cds.String",
           "@cds.persistence.name": "NAME"
         },
@@ -500,7 +500,7 @@
           "@cds.persistence.name": "UNIT"
         }
       },
-      "@cds.persistence.name": "JUPITERPA_BALANCE_BALANCE"
+      "@cds.persistence.name": "JUPITERPA_BALANCE_MODEL_BALANCE"
     },
     "jupiterpa.Unit": {
       "kind": "type",

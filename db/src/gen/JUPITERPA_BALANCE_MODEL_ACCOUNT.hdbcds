@@ -1,4 +1,4 @@
-entity JUPITERPA_BALANCE_ACCOUNT {
+entity JUPITERPA_BALANCE_MODEL_ACCOUNT {
   key ID : String(36);
   NAME : String(5000);
   ADMIN_CREATEDAT : UTCTimestamp;
