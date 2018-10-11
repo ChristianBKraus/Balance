@@ -1,4 +1,4 @@
-namespace jupiterpa.balance;
+namespace jupiterpa.balance.model;
 using jupiterpa as base from './base-model';
 
 entity Account {

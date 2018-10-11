@@ -20,7 +20,7 @@ public class ValidationTest {
 		repo = mock(RepositoryInterface.class);
 
 		exists.setName("Exists");
-		exists.setID(1);
+		exists.setID("1");
 
 		when(repo.getAccountByName("NotExists")).thenReturn(null);
 		when(repo.getAccountByName("Exists")).thenReturn(exists);
@@ -63,9 +63,10 @@ public class ValidationTest {
     @Test
     public void transactionSuccess() throws ValidationException {
     	Transaction t = new Transaction();
-    	t.setID(10);
+    	t.setID("10");
     	t.setAccount(exists);
-    	t.setAmount(5);
+    	t.setAmount_value(5);
+    	t.setAmount_unit("h");
     	
         validation.validate(t);
     }
