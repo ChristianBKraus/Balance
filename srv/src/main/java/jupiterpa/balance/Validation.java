@@ -22,10 +22,17 @@ public class Validation {
 	}
 	
 	public void validate(Transaction transaction) throws ValidationException {
+		
+		// Read Account from database
+		Account acc = transaction.getAccount();  
+		if (acc == null && transaction.getAccount_ID() != null) {
+			acc = repo.getAccountById( transaction.getAccount_ID() );
+			transaction.setAccount(acc);
+		}
+		
 		if ( transaction.getAccount() == null ) {
 			throw new ValidationException("TRANSACTION_ACCOUNT_INITIAL");
 		}
-		Account acc = transaction.getAccount();  
 		
 		 if ( repo.getAccountById(transaction.getAccount().getID()) == null ) {
 		 	throw new ValidationException("TRANSACTION_ACCOUNT_NOT_EXISTS",transaction.getAccount_ID().toString());			
