@@ -30,9 +30,9 @@ public class Validation {
 		 if ( repo.getAccountById(transaction.getAccount().getID()) == null ) {
 		 	throw new ValidationException("TRANSACTION_ACCOUNT_NOT_EXISTS",transaction.getAccount_ID().toString());			
 		 }
-		 if (transaction.getAmount() < 0.0) {
+		 if (transaction.getAmount_value() < 0.0) {
 		 	Balance balance = repo.getBalanceByAccountId(transaction.getAccount().getID());
-		 	if ( Math.abs( transaction.getAmount() ) > balance.getAmount() ) {
+		 	if ( Math.abs( transaction.getAmount_value() ) > balance.getAmount() ) {
 		 		throw new ValidationException("TRANSACTION_BALANCE_LOW",transaction.getAccount().getID().toString(),balance.getAmount().toString());				
 		 	}
 		 }

@@ -4,6 +4,6 @@ import jupiterpa.balance.model.*;
 
 public interface RepositoryInterface {
 	public Account getAccountByName(String name);
-	public Account getAccountById(Integer id);
-	public Balance getBalanceByAccountId(Integer id);
+	public Account getAccountById(String id);
+	public Balance getBalanceByAccountId(String id);
 }

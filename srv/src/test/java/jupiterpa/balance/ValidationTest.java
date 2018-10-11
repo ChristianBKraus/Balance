@@ -25,15 +25,15 @@ public class ValidationTest {
 		when(repo.getAccountByName("NotExists")).thenReturn(null);
 		when(repo.getAccountByName("Exists")).thenReturn(exists);
 		
-		when(repo.getAccountById(0)).thenReturn(null);
-		when(repo.getAccountById(1)).thenReturn(exists);
+		when(repo.getAccountById("0")).thenReturn(null);
+		when(repo.getAccountById("1")).thenReturn(exists);
 		
 		Balance bal = new Balance();
 		bal.setId(1);
 		bal.setName("Exists");
 		bal.setAmount(10);
 		
-		when(repo.getBalanceByAccountId(1)).thenReturn(bal);
+		when(repo.getBalanceByAccountId("1")).thenReturn(bal);
 		
         validation = new Validation(repo);		
 	}

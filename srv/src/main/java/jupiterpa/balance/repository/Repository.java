@@ -47,13 +47,13 @@ public class Repository implements RepositoryInterface {
 	}
 
 	@Override
-	public Account getAccountById(Integer id) {
+	public Account getAccountById(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Balance getBalanceByAccountId(Integer id) {
+	public Balance getBalanceByAccountId(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
