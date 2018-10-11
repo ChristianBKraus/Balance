@@ -16,5 +16,5 @@ entity Transaction {
 
 entity Balance as 
 	SELECT from Transaction 
-		{ key account.ID, account.name, sum( amount.value ) as amount : Integer, amount.unit as unit : Integer } 
+		{ key account.ID, account.name, sum( amount.value ) as amount : Integer, amount.unit as unit : base.Unit } 
 		group by account.ID, account.name, amount.unit; 

@@ -243,7 +243,8 @@
           "value": {
             "=": "Balance.unit"
           },
-          "type": "cds.Integer",
+          "type": "cds.String",
+          "length": 10,
           "@cds.persistence.name": "UNIT"
         }
       },
@@ -436,8 +437,9 @@
               "=": "amount.unit"
             },
             "indexNo": 4,
-            "type": "cds.Integer",
+            "type": "cds.String",
             "_typeIsExplicit": true,
+            "length": 10,
             "@cds.persistence.name": "UNIT"
           }
         },
@@ -495,8 +497,9 @@
             "=": "amount.unit"
           },
           "indexNo": 4,
-          "type": "cds.Integer",
+          "type": "cds.String",
           "_typeIsExplicit": true,
+          "length": 10,
           "@cds.persistence.name": "UNIT"
         }
       },

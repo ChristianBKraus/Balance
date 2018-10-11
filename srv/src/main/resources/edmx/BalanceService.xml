@@ -43,7 +43,7 @@
         <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
         <Property Name="name" Type="Edm.String"/>
         <Property Name="amount" Type="Edm.Int32"/>
-        <Property Name="unit" Type="Edm.Int32"/>
+        <Property Name="unit" Type="Edm.String" MaxLength="10"/>
       </EntityType>
       <Association Name="Transaction_account">
         <End Role="Transaction" Type="BalanceService.Transaction" Multiplicity="*"/>
