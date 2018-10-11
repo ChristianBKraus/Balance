@@ -74,7 +74,7 @@ public class CDSQueryExecution {
 		return result;
 	}
 	
-	public EntityData selectSingle(CDSQuery cdsQuery) {
+	public EntityData selectSingle(CDSQuery cdsQuery) { 
 		List<EntityData> list = select(cdsQuery);
 		if (list.size() > 0) {
 			return list.get(0);
