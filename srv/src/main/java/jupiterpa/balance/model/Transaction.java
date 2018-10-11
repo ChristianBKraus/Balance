@@ -20,7 +20,7 @@ public class Transaction {
       nullable = false
   )
   @Id
-  private Integer ID;
+  private String ID;
 
   @Basic
   private Integer amount;
@@ -42,11 +42,11 @@ public class Transaction {
   public Transaction() {
   }
 
-  public Integer getID() {
+  public String getID() {
     return this.ID;
   }
 
-  public void setID(Integer ID) {
+  public void setID(String ID) {
     this.ID = ID;
   }
 

@@ -1,15 +1,12 @@
 package jupiterpa.balance;
 
-import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import static org.mockito.Mockito.*;
 
 import jupiterpa.balance.repository.RepositoryInterface;
 import jupiterpa.balance.model.*;
-import jupiterpa.balance.odata.*;
 
-import jupiterpa.util.cds.CDSQueryExecution;
 import jupiterpa.util.odata.ValidationException;
 
 public class ValidationTest {

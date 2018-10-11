@@ -19,19 +19,24 @@ public class Account {
       nullable = false
   )
   @Id
-  private Integer ID;
+  private String ID;
 
   @Basic
   private String name;
 
   public Account() {
   }
+  
+  //public Account(Integer id, String name) {
+  //	this.ID = id;
+  //	this.name = name;
+  //}
 
-  public Integer getID() {
+  public String getID() {
     return this.ID;
   }
 
-  public void setID(Integer ID) {
+  public void setID(String ID) {
     this.ID = ID;
   }
 
