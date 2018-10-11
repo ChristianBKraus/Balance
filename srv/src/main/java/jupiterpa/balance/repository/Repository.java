@@ -26,35 +26,17 @@ public class Repository implements RepositoryInterface {
 	
 	@Override
 	public Account getAccountByName(String name) {
-		try {
-			CDSQuery cdsQuery = 
-					new CDSSelectQueryBuilder("BalanceService.Account")
-					    .where(new ConditionBuilder().columnName("Name").EQ(name))
-						.build();                                       
-			List<EntityData> list = 
-					exe.execute(cdsQuery);
-			if (list.size() > 0) {
-				return list.get(0).as(Account.class);
-			} else 
-				return null;
-		} catch (CDSException e) {
-			e.printStackTrace();
-			return null;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return null;
-		}
+		return exe.selectSingleAs("BalanceService.Account","Name", name, Account.class) ; 
 	}
 
 	@Override
 	public Account getAccountById(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return exe.selectSingleAs("BalanceService.Account","Id",id,Account.class);
 	}
 
 	@Override
 	public Balance getBalanceByAccountId(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		return exe.selectSingleAs("BalanceService.Balance", "account_id",id,Balance.class);
 	}
 }
+ 
