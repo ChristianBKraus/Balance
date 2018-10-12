@@ -13,7 +13,6 @@ package jupiterpa.balance;
 //import jupiterpa.util.cds.CDSQueryExecution;
 
 public class IntegrationTest {
-	
   //  @Test
   //  public void cds() throws SQLException {
   //  	try {

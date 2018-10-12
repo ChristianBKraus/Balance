@@ -20,17 +20,17 @@ public class Repository implements RepositoryInterface {
 	}
 	
 	@Override
-	public Account getAccountByName(String name) throws CDSException, SQLException, NamingException  {
+	public Account getAccountByName(String name) throws SQLException, NamingException, CDSException  {
 		return exe.selectSingleAs("BalanceService.Account","Name", name, Account.class) ; 
 	}
 
 	@Override
-	public Account getAccountById(String id) throws CDSException, SQLException, NamingException {
+	public Account getAccountById(String id) throws SQLException, NamingException, CDSException {
 		return exe.selectSingleAs("BalanceService.Account","Id",id,Account.class);
 	}
 
 	@Override
-	public Balance getBalanceByAccountId(String id) throws CDSException, SQLException, NamingException {
+	public Balance getBalanceByAccountId(String id) throws SQLException, NamingException, CDSException {
 		return exe.selectSingleAs("BalanceService.Balance", "account_id",id,Balance.class);
 	}
 }

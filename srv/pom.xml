@@ -42,7 +42,6 @@
     	<groupId>org.projectlombok</groupId>
     	<artifactId>lombok</artifactId>
     	<version>1.18.2</version>
-    	<scope>provided</scope>
 	</dependency>
 	
 	<!-- TomEE 
@@ -99,21 +98,15 @@
           </execution>
         </executions>
       </plugin>
-      <!-- TomEE 
       <plugin>
-		<groupId>org.apache.openejb.maven</groupId>
-		<artifactId>tomee-maven-plugin</artifactId>
-		<version>1.7.1</version>
-		<configuration>
-    		<synchronization>
-    			<extensions>
-        			<extension>.class</extension> 
-    			</extensions>
-    		</synchronization>
-		  	<reloadOnUpdate>true</reloadOnUpdate>
-		</configuration>
-	</plugin>
-	-->
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.5</version>
+          <configuration>
+              <source>1.8</source>
+              <target>1.8</target>
+          </configuration>
+      </plugin>
     </plugins>
     <pluginManagement>
     	<plugins>

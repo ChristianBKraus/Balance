@@ -2,18 +2,14 @@ package jupiterpa.balance;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import com.sap.cloud.sdk.hana.connectivity.cds.CDSException;
-
 import static org.mockito.Mockito.*;
 
+import com.sap.cloud.sdk.hana.connectivity.cds.CDSException;
 import java.sql.SQLException;
-
 import javax.naming.NamingException;
 
 import jupiterpa.balance.repository.RepositoryInterface;
 import jupiterpa.balance.model.*;
-
 import jupiterpa.util.odata.ValidationException;
 
 public class ValidationTest {
@@ -111,5 +107,10 @@ public class ValidationTest {
     	
         validation.validate(t);
     }
-   
+    
+    @Test
+    public void balance() throws ValidationException, CDSException, SQLException, NamingException {
+    	Balance balance = repo.getBalanceByAccountId("1");
+    	org.junit.Assert.assertTrue(balance.getName().equals("Exists"));
+    }
  }
