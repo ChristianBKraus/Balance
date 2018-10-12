@@ -30,23 +30,9 @@ public class CDSQueryExecution {
 	public CDSQueryExecution(String namespace) {
 		this.namespace = namespace;
 	}
-<<<<<<< HEAD
-	private static Connection getConnection() throws SQLException {
-		Connection conn = null;
-		Context ctx;
-		
-		try {
-			ctx = new InitialContext();
-			conn = ((DataSource) ctx.lookup("java:comp/env/jdbc/java-hdi-container")).getConnection();	
-		} catch (Exception e) {
-			e.printStackTrace();
-			logger.error("Connection to Hana not successful");
-		}
-=======
 	private static Connection getConnection() throws SQLException, NamingException {
 		Context ctx = new InitialContext();
 		Connection conn = ((DataSource) ctx.lookup("java:comp/env/jdbc/java-hdi-container")).getConnection();	
->>>>>>> refs/heads/master
 		return conn;
 	}
 	private CDSDataSourceHandler getCDSHandler() throws SQLException, NamingException {
