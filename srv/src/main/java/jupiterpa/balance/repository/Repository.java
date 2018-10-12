@@ -1,14 +1,9 @@
 package jupiterpa.balance.repository;
 
 import java.sql.SQLException;
-import java.util.List;
-
+import javax.naming.NamingException;
 import com.sap.cloud.sdk.hana.connectivity.cds.CDSException;
-import com.sap.cloud.sdk.hana.connectivity.cds.CDSQuery;
-import com.sap.cloud.sdk.hana.connectivity.cds.CDSSelectQueryBuilder;
-import com.sap.cloud.sdk.hana.connectivity.cds.ConditionBuilder;
 import com.sap.cloud.sdk.service.prov.api.DataSourceHandler;
-import com.sap.cloud.sdk.service.prov.api.EntityData;
 
 import jupiterpa.balance.model.*;
 import jupiterpa.util.cds.CDSQueryExecution;
@@ -25,17 +20,17 @@ public class Repository implements RepositoryInterface {
 	}
 	
 	@Override
-	public Account getAccountByName(String name) {
+	public Account getAccountByName(String name) throws CDSException, SQLException, NamingException  {
 		return exe.selectSingleAs("BalanceService.Account","Name", name, Account.class) ; 
 	}
 
 	@Override
-	public Account getAccountById(String id) {
+	public Account getAccountById(String id) throws CDSException, SQLException, NamingException {
 		return exe.selectSingleAs("BalanceService.Account","Id",id,Account.class);
 	}
 
 	@Override
-	public Balance getBalanceByAccountId(String id) {
+	public Balance getBalanceByAccountId(String id) throws CDSException, SQLException, NamingException {
 		return exe.selectSingleAs("BalanceService.Balance", "account_id",id,Balance.class);
 	}
 }
