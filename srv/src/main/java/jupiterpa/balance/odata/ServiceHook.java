@@ -29,6 +29,8 @@ public class ServiceHook {
 			return new ResponseBuilder().buildBeforeCreateResponse(null); //use this API if the payload has not been modified.
     	} catch (ValidationException e) {
 		    return new ResponseBuilder().buildBeforeCreateResponse(e);
+    	} catch (Exception e) {
+    		return new ResponseBuilder().buildBeforeCreateResponse(new ValidationException(e.getMessage()));
     	}
     }
 
@@ -41,6 +43,8 @@ public class ServiceHook {
 		    return new ResponseBuilder().buildBeforeCreateResponse(null); //use this API if the payload has not been modified.
     	} catch (ValidationException e) {
 		    return new ResponseBuilder().buildBeforeCreateResponse(e); //use this API if the payload has not been modified.
+    	} catch (Exception e) {
+    		return new ResponseBuilder().buildBeforeCreateResponse(new ValidationException(e.getMessage()));
     	}  
     }
     

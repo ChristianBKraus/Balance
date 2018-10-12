@@ -1,6 +1,13 @@
 package jupiterpa.balance;
 
 import jupiterpa.util.odata.*;
+
+import java.sql.SQLException;
+
+import javax.naming.NamingException;
+
+import com.sap.cloud.sdk.hana.connectivity.cds.CDSException;
+
 import jupiterpa.balance.model.*;
 //import jupiterpa.cds.*;
 import jupiterpa.balance.repository.RepositoryInterface; 
@@ -12,7 +19,7 @@ public class Validation {
 		this.repo = repo;
 	}
 	
-	public void validate(Account account) throws ValidationException {
+	public void validate(Account account) throws ValidationException, SQLException, NamingException, CDSException {
 		if (account.getName() == null || account.getName().isEmpty()) {
 			throw new ValidationException("ACCOUNT_INITIAL_NAME");
 		}
@@ -21,7 +28,7 @@ public class Validation {
 		}
 	}
 	
-	public void validate(Transaction transaction) throws ValidationException {
+	public void validate(Transaction transaction) throws ValidationException, SQLException, NamingException, CDSException {
 		
 		// Read Account from database
 		Account acc = transaction.getAccount();  

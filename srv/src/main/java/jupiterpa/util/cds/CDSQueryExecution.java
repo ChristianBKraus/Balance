@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import org.slf4j.Logger;
@@ -29,44 +30,27 @@ public class CDSQueryExecution {
 	public CDSQueryExecution(String namespace) {
 		this.namespace = namespace;
 	}
-	private static Connection getConnection() throws SQLException {
-		Connection conn = null;
-		Context ctx;
-		try {
-			ctx = new InitialContext();
-			logger.error("Context: ",ctx);
-			if (ctx == null) logger.error("Context initial");
-			conn = ((DataSource) ctx.lookup("java:comp/env/jdbc/java-hdi-container")).getConnection();	
-			logger.error("Connection to HANA successfull",ctx,conn);
-		} catch (Exception e) {
-			e.printStackTrace();
-			logger.error("Exception");
-		}
+	private static Connection getConnection() throws SQLException, NamingException {
+		Context ctx = new InitialContext();
+		Connection conn = ((DataSource) ctx.lookup("java:comp/env/jdbc/java-hdi-container")).getConnection();	
 		return conn;
 	}
-	private CDSDataSourceHandler getCDSHandler() throws SQLException {
+	private CDSDataSourceHandler getCDSHandler() throws SQLException, NamingException {
 		CDSDataSourceHandler dsHandler = 
 				DataSourceHandlerFactory.getInstance()
 					.getCDSHandler(getConnection(), namespace);
 		return dsHandler;
 	}
-	public List<EntityData> select(CDSQuery cdsQuery) {
-		logger.error("Start Query");
-		try {
-  		  List<EntityData> list = 
+	public List<EntityData> select(CDSQuery cdsQuery) throws SQLException, NamingException, CDSException {
+		logger.info("Start Query");
+		List<EntityData> list = 
 				getCDSHandler().executeQuery(cdsQuery)
 					.getResult();
-  		  logger.info("Query successful");
-  		  return list;
-		} catch (CDSException e) {
-			e.printStackTrace();
-			return new ArrayList<EntityData>();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return new ArrayList<EntityData>();
-		}
+  		logger.info("Query successful");
+  		return list;
 	}
-	public <T> List<T> selectAs(CDSQuery cdsQuery, Class<T> t) {
+
+	public <T> List<T> selectAs(CDSQuery cdsQuery, Class<T> t) throws SQLException, NamingException, CDSException {
 		List<EntityData> list = 
 			select(cdsQuery);
 		List<T> result = new ArrayList<T>();
@@ -74,7 +58,7 @@ public class CDSQueryExecution {
 		return result;
 	}
 	
-	public EntityData selectSingle(CDSQuery cdsQuery) { 
+	public EntityData selectSingle(CDSQuery cdsQuery) throws SQLException, NamingException, CDSException { 
 		List<EntityData> list = select(cdsQuery);
 		if (list.size() > 0) {
 			return list.get(0);
@@ -82,14 +66,14 @@ public class CDSQueryExecution {
 			return null;
 		}
 	}
-	public <T> T selectSingleAs(CDSQuery cdsQuery,Class<T> t) {
+	public <T> T selectSingleAs(CDSQuery cdsQuery,Class<T> t) throws SQLException, NamingException, CDSException {
 		EntityData entity = selectSingle(cdsQuery);
 		if (entity != null) {
 		  return entity.as(t);
 		} else 
 			return null;
 	}
-	public <T> T selectSingleAs(String entity, String field, Object value, Class<T> t) {
+	public <T> T selectSingleAs(String entity, String field, Object value, Class<T> t) throws SQLException, NamingException, CDSException {
 		return selectSingleAs(
 			new CDSSelectQueryBuilder(entity)
 				.where(new ConditionBuilder().columnName(field).EQ(value))
