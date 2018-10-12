@@ -23,11 +23,15 @@ modules:
     requires:
       - name: Balance-hdi-container
         properties:
-          JBP_CONFIG_RESOURCE_CONFIGURATION: >-
-            [tomcat/webapps/ROOT/META-INF/context.xml:
-            {"service_name_for_DefaultDB" : "~{hdi-container-name}"}]
+          JBP_CONFIG_RESOURCE_CONFIGURATION: '[tomcat/webapps/ROOT/META-INF/context.xml: {"service_name_for_DefaultDB" : "~{hdi-container-name}"}]'
+      - name: Balance-Appl-Log
 resources:
   - name: Balance-hdi-container
     properties:
       hdi-container-name: '${service-name}'
     type: com.sap.xs.hdi-container
+  - name: Balance-Appl-Log
+    parameters:
+      service: application-logs
+      service-plan: lite
+    type: org.cloudfoundry.managed-service

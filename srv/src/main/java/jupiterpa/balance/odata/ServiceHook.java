@@ -34,7 +34,7 @@ public class ServiceHook {
 
     @BeforeCreate (entity = transaction, serviceName = ServiceHook.serviceName) 
     public BeforeCreateResponse beforecreateTransaction(CreateRequest cr, ExtensionHelper eh) {
-    	logger.info("Validate " + transaction);
+    	logger.warn("Validate " + transaction);
     	
     	try {
     	    getValidator(cr,eh).validate(cr.getData().as(Transaction.class));
