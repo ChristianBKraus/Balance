@@ -47,16 +47,14 @@
     	<web-resource-collection>
         	<web-resource-name>Enable HTTP Methods</web-resource-name>
         	<url-pattern>/odata/v2/*</url-pattern>
-        	<http-method-omission>HEAD</http-method-omission>
-			<http-method-omission>GET</http-method-omission>
-			<http-method-omission>PUT</http-method-omission>
-			<http-method-omission>POST</http-method-omission>
-			<http-method-omission>DELETE</http-method-omission>
-			<http-method-omission>PATCH</http-method-omission>
     	</web-resource-collection>
-   		<auth-constraint/>
+   		<auth-constraint>
+   			<role-name>AccountUser</role-name>
+   		</auth-constraint>
 	</security-constraint>
-	<security-role/>
+	<security-role>
+		<role-name>AccountUser</role-name>
+	</security-role>
 
 	<listener>
 		<listener-class>com.sap.cloud.sdk.service.prov.v2.rt.core.web.ServletListener</listener-class>
