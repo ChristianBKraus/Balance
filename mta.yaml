@@ -25,6 +25,7 @@ modules:
         properties:
           JBP_CONFIG_RESOURCE_CONFIGURATION: '[tomcat/webapps/ROOT/META-INF/context.xml: {"service_name_for_DefaultDB" : "~{hdi-container-name}"}]'
       - name: Balance-Appl-Log
+      - name: my-xsuaa
 resources:
   - name: Balance-hdi-container
     properties:
@@ -39,4 +40,6 @@ resources:
     parameters:
       service: 'Authorization & Trust Management'
       service-plan: application
+      path: ./xs-security.json
+      shared: true
     type: org.cloudfoundry.existing-service
