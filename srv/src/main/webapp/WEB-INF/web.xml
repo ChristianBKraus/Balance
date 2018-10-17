@@ -43,17 +43,20 @@
 	    <load-on-startup>1</load-on-startup>
 	</servlet>
 
+	<login-config>
+		<auth-method>XSUAA</auth-method>
+	</login-config>
 	<security-constraint>
     	<web-resource-collection>
-        	<web-resource-name>Enable HTTP Methods</web-resource-name>
+        	<web-resource-name>OData Services</web-resource-name>
         	<url-pattern>/odata/v2/*</url-pattern>
     	</web-resource-collection>
    		<auth-constraint>
-   			<role-name>AccountUser</role-name>
+   			<role-name>Balance</role-name>
    		</auth-constraint>
 	</security-constraint>
 	<security-role>
-		<role-name>AccountUser</role-name>
+		<role-name>Balance</role-name>
 	</security-role>
 
 	<listener>

@@ -35,3 +35,8 @@ resources:
       service: application-logs
       service-plan: lite
     type: org.cloudfoundry.managed-service
+  - name: my-xsuaa
+    parameters:
+      service: 'Authorization & Trust Management'
+      service-plan: application
+    type: org.cloudfoundry.existing-service
