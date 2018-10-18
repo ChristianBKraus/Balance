@@ -51,9 +51,9 @@
         	<web-resource-name>OData Services</web-resource-name>
         	<url-pattern>/odata/v2/*</url-pattern>
     	</web-resource-collection>
-   		<auth-constraint>
+   		<omit-auth-constraint>
    			<role-name>Balance</role-name>
-   		</auth-constraint>
+   		</omit-auth-constraint>
 	</security-constraint>
 	<security-role>
 		<role-name>Balance</role-name>
